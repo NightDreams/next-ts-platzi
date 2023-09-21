@@ -4,20 +4,40 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Home() {
+	// generate simple unique id
+	const generateId = (): string => {
+		return (
+			Math.random().toString(36).substring(2, 15) +
+			Math.random().toString(36).substring(2, 15)
+		);
+	};
 	const randomNumber = () => Math.floor(Math.random() * 123) + 1;
-	const [images, setImages] = useState<Array<string>>([
-		`https://randomfox.ca/images/${randomNumber()}.jpg`,
-		`https://randomfox.ca/images/${randomNumber()}.jpg`,
-		`https://randomfox.ca/images/${randomNumber()}.jpg`,
-	]);
 
-	const image = `https://randomfox.ca/images/${randomNumber()}.jpg`;
+	type ImageItem = {
+		id: string;
+		url: string;
+	};
+
+	const [images, setImages] = useState<Array<ImageItem>>([
+		{
+			id: generateId(),
+			url: `https://randomfox.ca/images/${randomNumber()}.jpg`,
+		},
+		{
+			id: generateId(),
+			url: `https://randomfox.ca/images/${randomNumber()}.jpg`,
+		},
+		{
+			id: generateId(),
+			url: `https://randomfox.ca/images/${randomNumber()}.jpg`,
+		},
+	]);
 
 	return (
 		<main>
-			{images.map((image, index) => (
-				<div className="p-4" key={index}>
-					<RandomFox image={image} />
+			{images.map(({ id, url }) => (
+				<div className="p-4" key={id}>
+					<RandomFox image={url} />
 				</div>
 			))}
 		</main>
