@@ -14,11 +14,6 @@ const generateId = (): string => {
 // random number from 1 to 122
 const randomNumber = () => Math.floor(Math.random() * 123) + 1;
 
-type TImageItem = {
-	id: string;
-	url: string;
-};
-
 export default function Home() {
 	const [images, setImages] = useState<Array<TImageItem>>([]);
 
