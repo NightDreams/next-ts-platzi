@@ -2,7 +2,7 @@
 import { LazyImage } from '@components/RandomFox';
 import Image from 'next/image';
 import { MouseEventHandler, useState } from 'react';
-
+import { random } from 'lodash';
 // generate simple unique id
 
 const generateId = (): string => {
@@ -12,7 +12,8 @@ const generateId = (): string => {
 	);
 };
 // random number from 1 to 122
-const randomNumber = () => Math.floor(Math.random() * 123) + 1;
+
+const randomNumber = () => random(1, 122);
 
 export default function Home() {
 	const [images, setImages] = useState<Array<TImageItem>>([]);
